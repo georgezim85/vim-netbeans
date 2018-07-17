@@ -19,7 +19,7 @@ Bundle 'Conque-Shell'
 Bundle 'L9'
 
 " Utilities
-Bundle 'mhz/vim-matchit.git'
+Bundle 'andymass/vim-matchup'
 Bundle 'vim-scripts/tComment'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-surround'
@@ -49,7 +49,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 Bundle 'lukaszb/vim-web-indent'
-Bundle 'mattn/zencoding-vim'
+Plugin 'mattn/emmet-vim'
 Bundle 'godlygeek/tabular'
 Bundle 'jamescarr/snipmate-nodejs'
 Bundle 'lunaru/vim-less'
@@ -59,9 +59,9 @@ Bundle 'pangloss/vim-javascript'
 " Syntax checking 
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown.git'
-Bundle "briangershon/html5.vim"
-Bundle "sukima/xmledit"
-Bundle "indentpython.vim"
+Bundle 'othree/html5.vim'
+Bundle 'sukima/xmledit'
+Bundle 'indentpython.vim'
 
 filetype plugin indent on     " required! 
 
