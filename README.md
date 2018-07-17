@@ -22,7 +22,7 @@ Installing
 Go to your Command / Terminal : 
 
     cd ~/
-    git clone https://github.com/yodiaditya/vim-netbeans.git 
+    git clone https://github.com/georgezim85/vim-netbeans.git 
     ln -s ~/vim-netbeans/.vimrc ~/.vimrc
     ln -s ~/vim-netbeans/.vim ~/.vim
     git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
