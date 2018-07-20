@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
@@ -14,7 +14,7 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" vim-scripts dependency 
+" vim-scripts dependency
 Bundle 'Conque-Shell'
 Bundle 'L9'
 
@@ -68,14 +68,14 @@ let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 0
 
-" Syntax checking 
+" Syntax checking
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown.git'
 Bundle 'othree/html5.vim'
 Bundle 'sukima/xmledit'
 Bundle 'indentpython.vim'
 
-filetype plugin indent on     " required! 
+filetype plugin indent on     " required!
 
 "
 " Brief help
@@ -97,7 +97,7 @@ filetype plugin indent on     " required!
 " HOWTO Installation
 " 1. Delete bundle/snipmate.vim/snippets because we will use another updated snippets
 " reference : http://cisight.com/solving-snipmate-vim-error-snippet-c-is-already-defined/
-" 
+"
 " 2. Change Tab as your behaviour between Snipmate and Pydiction :
 " http://stackoverflow.com/questions/1687252/with-vim-use-both-snipmate-and-pydiction-together-share-the-tab-key
 "
@@ -106,16 +106,16 @@ filetype plugin indent on     " required!
 
 " Also, i install Python Debugger like pyflakes, pylint and pep8
 " Here are related articles : http://dancingpenguinsoflight.com/2009/02/python-and-vim-make-your-own-ide/
-" 
+"
 " For installing Python debugger :
 " sudo pip install pylint
 " sudo pip install pyflakes
 " sudo pip install pep8
 "
 "
-" There are some well documentation here according into several plugin used : 
+" There are some well documentation here according into several plugin used :
 " http://sontek.net/turning-vim-into-a-modern-python-ide#basic-editing-and-debugging
-" 
+"
 " sudo apt-get install vim-scripts
 
 " This configuration taken mixed from many resource and some customed by me :
@@ -127,7 +127,7 @@ filetype plugin indent on     " required!
 "
 " This is from : http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc "
 "
- 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,7 +199,7 @@ endfunction
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-set nolazyredraw "Don't redraw while executing macros 
+set nolazyredraw "Don't redraw while executing macros
 set magic "Set magic on, for regular expressions
 
 set showmatch "Show matching bracets when text indicator is over them
@@ -221,7 +221,7 @@ set background=dark
 let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 colorscheme mustang
 set nonu
-set gfn=Monospace\ 8.7 
+set gfn=Monospace\ 8.7
 
 set encoding=utf8
 try
@@ -265,9 +265,9 @@ map <C-left> :bp<CR>
 
 " Tab configuration
 map <leader>tn :tabnew! %<cr>
-map <leader>te :tabedit 
+map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
@@ -277,19 +277,19 @@ function CreateTags()
     let curNodePath = g:NERDTreeFileNode.GetSelected().path.str()
     exec ':!ctags -R --languages=php -f ' . curNodePath . '/tags ' . curNodePath
 endfunction
-nmap <silent> <F4> :call CreateTags()<CR> set tags=./tags,tags; 
+nmap <silent> <F4> :call CreateTags()<CR> set tags=./tags,tags;
 set tags=./tags,tags;
 
-" PHP use and extend 
-function! IPhpInsertUse() 
-    call PhpInsertUse() 
-    call feedkeys('a',  'n') 
+" PHP use and extend
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
 endfunction
 autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR> 
-function! IPhpExpandClass() 
-    call PhpExpandClass() 
-    call feedkeys('a', 'n') 
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
 endfunction
 autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
@@ -319,7 +319,7 @@ nnoremap <C-l> <C-w>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" My CUSTOM 
+" My CUSTOM
 "
 set cmdheight=1               " Explicitly set the height of the command line
 set number                    " Display line numbers
@@ -334,7 +334,7 @@ nnoremap <leader>v "+gP
 " Set default environment based on current edited files
 autocmd BufEnter * silent! lcd %:p:h
 
-" The best thing here! 
+" The best thing here!
 " In insert mode, you can paste from clipboard using CTRL+v
 inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<ENTER>i<RIGHT>
 
@@ -403,7 +403,7 @@ nnoremap E w:<CR>:!python % <CR>
 " Execute NodeJS file being edited with <Shift> + n:
 nnoremap N w:<CR>:!node %<CR>
 
-" Execute javascriptLint on no-JS files like PHP, python, Html with <Shift> + j : 
+" Execute javascriptLint on no-JS files like PHP, python, Html with <Shift> + j :
 command! JavaScriptLintChecker call JavascriptLint()
 "nnoremap J w:<CR>:JavaScriptLintChecker<CR><ENTER><CR>
 
@@ -413,7 +413,7 @@ let jslint_command_options = '-conf ~/.vim/jsl.conf -nofilelisting -nocontext -n
 " Shortcut to Close quickfix window with leader+c
 nnoremap <leader>c <CR>:cclose<CR>
 
-" Set autocomplete form 
+" Set autocomplete form
 set completeopt=menuone,longest,preview
 
 " Enabling Django : https://github.com/robhudson/snipmate_for_django
@@ -435,13 +435,13 @@ au BufNewFile,BufRead forms.py     setlocal filetype=python.django
 au BufNewFile,BufRead common_settings.py  setlocal filetype=python.django
 au BufNewFile,BufRead common_settings.py  setlocal foldmethod=marker
 
-" 
+"
 " Django Surround https://code.djangoproject.com/wiki/UsingVimWithDjango
 "   'sb' for block
 "   'si' for an if statement
 "   'sw' for a with statement
 "   'sc' for a comment
-"   'sf' for a for statement 
+"   'sf' for a for statement
 "autocmd VimEnter * xunmap s
 
 let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1%}\r{% endblock %}"
@@ -476,8 +476,8 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " You might also find this useful
-" PHP Generated Code Highlights (HTML & SQL)                                              
-let php_sql_query=1                                                                                        
+" PHP Generated Code Highlights (HTML & SQL)
+let php_sql_query=1
 let php_htmlInStrings=1
 
 " Folding
@@ -485,7 +485,7 @@ let php_htmlInStrings=1
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 autocmd BufWinLeave .* mkview
-autocmd BufWinEnter .* silent loadview 
+autocmd BufWinEnter .* silent loadview
 
 autocmd Syntax c,cpp,vim,xml,html,xhtml,js,php,py,python setlocal foldmethod=manual
 autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
@@ -547,7 +547,7 @@ map <leader>b :FufBuffer<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MRU shorcuts
-map <leader><space> :MRU<CR> 
+map <leader><space> :MRU<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " NERDTree : https://github.com/scrooloose/nerdtree.git
@@ -559,7 +559,7 @@ map <leader><space> :MRU<CR>
 " autocmd VimEnter * NERDTree         " Make Always Load NERDTree every opening files
 " autocmd VimEnter * wincmd p         " Automatically go to buffer every time open files
 
-" FIXING NERDTree, automatically close if there no file edited 
+" FIXING NERDTree, automatically close if there no file edited
 "https://github.com/scrooloose/nerdtree/issues/21
 "
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
@@ -609,12 +609,12 @@ let g:pep8_map='<leader>8'
 
 highlight Pmenu gui=bold
 
-" Configure neocomplcache 
+" Configure neocomplcache
 " http://www.vim.org/scripts/script.php?script_id=2620
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_min_syntax_length = 4 
+let g:neocomplcache_min_syntax_length = 4
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -658,7 +658,7 @@ let g:syntastic_auto_loc_list=1 "Auto open errors window upon detection
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-let g:syntastic_enable_balloons=1 
+let g:syntastic_enable_balloons=1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
