@@ -491,45 +491,48 @@ autocmd Syntax c,cpp,vim,xml,html,xhtml,js,php,py,python setlocal foldmethod=man
 autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NerdeTree Toggle using by <F6>
+map <F6> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
+
 " NerdTree and Tagbar using by <F8>
-
-function! ToggleNERDTreeAndTagbar()
-    let w:jumpbacktohere = 1
-
-    " Detect which plugins are open
-    if exists('t:NERDTreeBufName')
-        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
-    else
-        let nerdtree_open = 0
-    endif
-    let tagbar_open = bufwinnr('__Tagbar__') != -1
-
-    " Perform the appropriate action
-    if nerdtree_open && tagbar_open
-        NERDTreeClose
-        TagbarClose
-    elseif nerdtree_open
-        TagbarOpen
-    elseif tagbar_open
-        NERDTree
-    else
-        NERDTree
-        TagbarOpen
-    endif
-
-    " Jump back to the original window
-    for window in range(1, winnr('$'))
-        execute window . 'wincmd w'
-        if exists('w:jumpbacktohere')
-            unlet w:jumpbacktohere
-            break
-        endif
-    endfor
-endfunction
+"function! ToggleNERDTreeAndTagbar()
+"    let w:jumpbacktohere = 1
+"
+"    " Detect which plugins are open
+"    if exists('t:NERDTreeBufName')
+"        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
+"    else
+"        let nerdtree_open = 0
+"    endif
+"    let tagbar_open = bufwinnr('__Tagbar__') != -1
+"
+"    " Perform the appropriate action
+"    if nerdtree_open && tagbar_open
+"        NERDTreeClose
+"        TagbarClose
+"    elseif nerdtree_open
+"        TagbarOpen
+"    elseif tagbar_open
+"        NERDTree
+"    else
+"        NERDTree
+"        TagbarOpen
+"    endif
+"
+"    " Jump back to the original window
+"    for window in range(1, winnr('$'))
+"        execute window . 'wincmd w'
+"        if exists('w:jumpbacktohere')
+"            unlet w:jumpbacktohere
+"            break
+"        endif
+"    endfor
+"endfunction
 
 " now you can open NERDTree and Tagbar using F8
 " http://stackoverflow.com/questions/6624043/how-to-open-or-close-nerdtree-and-tagbar-with-leader
-nmap <F8> :call ToggleNERDTreeAndTagbar()<CR>
+"nmap <F8> :call ToggleNERDTreeAndTagbar()<CR>
 
 " TagBar Configuration
 let g:tagbar_usearrows=1
@@ -660,6 +663,9 @@ let g:syntastic_enable_balloons=1
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+set list          " Display unprintable characters f12 - switches
+set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
 
 "remove trailing whitespace
 "http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace
