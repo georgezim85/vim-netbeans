@@ -36,7 +36,7 @@ Bundle 'godlygeek/csapprox.git'
 
 "Snipmate
 Bundle 'msanders/snipmate.vim'
-Bundle 'vim-scripts/snipmate-snippets'
+"Bundle 'vim-scripts/snipmate-snippets'
 Bundle "Shougo/neocomplcache"
 
 " Python development
@@ -700,3 +700,5 @@ if has("gui_running")
     highlight DiffChange cterm=none ctermfg=bg ctermbg=Yellow gui=none guifg=bg guibg=Yellow
     highlight DiffText cterm=none ctermfg=bg ctermbg=Magenta gui=none guifg=bg guibg=Magenta
 endif
+
+execute pathogen#infect('~/vim-netbeans/.vim/bundle/{}')
