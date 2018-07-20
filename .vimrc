@@ -56,6 +56,18 @@ Bundle 'lunaru/vim-less'
 "Bundle 'joestelmach/javaScriptLint.vim'
 Bundle 'pangloss/vim-javascript'
 
+" PHP
+Plugin 'shawncplus/phpcomplete.vim'
+Bundle 'arnaud-lb/vim-php-namespace'
+
+" airline
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 0
+
 " Syntax checking 
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown.git'
@@ -137,7 +149,7 @@ let g:mapleader=","
 nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vimrc<cr>
+"map <leader>e :e! ~/.vimrc<cr>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
@@ -162,10 +174,26 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set mouse=a
+"set cursorline    " highlight the current line
+set visualbell
+set number
+set numberwidth=5
 set so=7            " Set 7 lines to the curors - when moving vertical..
 set ruler           "Always show current position
 set hid             "Change buffer - without saving
 set nohidden
+
+" relative lines
+set rnu
+function! ToggleNumbersOn()
+    set nu!
+    set rnu
+endfunction
+function! ToggleRelativeOn()
+    set rnu!
+    set nu
+endfunction
 
 " Set backspace config
 set backspace=eol,start,indent
@@ -178,7 +206,7 @@ set showmatch "Show matching bracets when text indicator is over them
 
 " No sound on errors
 set noerrorbells
-set novisualbell
+"set novisualbell
 set tm=500
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -244,6 +272,51 @@ map <leader>tm :tabmove
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
+" Gerar Tags usando <F4>
+function CreateTags()
+    let curNodePath = g:NERDTreeFileNode.GetSelected().path.str()
+    exec ':!ctags -R --languages=php -f ' . curNodePath . '/tags ' . curNodePath
+endfunction
+nmap <silent> <F4> :call CreateTags()<CR> set tags=./tags,tags; 
+set tags=./tags,tags;
+
+" PHP use and extend 
+function! IPhpInsertUse() 
+    call PhpInsertUse() 
+    call feedkeys('a',  'n') 
+endfunction
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR> 
+function! IPhpExpandClass() 
+    call PhpExpandClass() 
+    call feedkeys('a', 'n') 
+endfunction
+autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+
+" Mapeamento de tabs
+nnoremap <S-tab> :tabprevious<CR>
+nnoremap <tab> :tabnext<CR>
+nnoremap <C-n> :tabnew<CR>
+inoremap <C-c> <Esc>:tabclose<CR>
+nnoremap <C-c> :tabclose<CR>
+nnoremap <A-F1> 1gt
+nnoremap <A-F2> 2gt
+nnoremap <A-F3> 3gt
+nnoremap <A-F4> 4gt
+nnoremap <A-F5> 5gt
+nnoremap <A-F6> 6gt
+nnoremap <A-F7> 7gt
+nnoremap <A-F8> 8gt
+nnoremap <A-F9> 9gt
+nnoremap <A-F10> 10gt
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " My CUSTOM 
@@ -270,8 +343,8 @@ inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<ENTER>i<RIGHT>
 " have further <tab>s cycle through the possibilities:
 set wildmode=list:longest,full
 
-set nowrap          " no line wrapping;
-set guioptions+=b   " add a horizontal scrollbar to the bottom
+"set nowrap          " no line wrapping;
+"set guioptions+=b   " add a horizontal scrollbar to the bottom
 
 "--- search options ------------
 set incsearch       " show 'best match so far' as you type
@@ -332,7 +405,7 @@ nnoremap N w:<CR>:!node %<CR>
 
 " Execute javascriptLint on no-JS files like PHP, python, Html with <Shift> + j : 
 command! JavaScriptLintChecker call JavascriptLint()
-nnoremap J w:<CR>:JavaScriptLintChecker<CR><ENTER><CR>
+"nnoremap J w:<CR>:JavaScriptLintChecker<CR><ENTER><CR>
 
 " Change jsl.conf in ~/.vim/jsl.conf for customization
 let jslint_command_options = '-conf ~/.vim/jsl.conf -nofilelisting -nocontext -nosummary -nologo -process'
@@ -546,7 +619,7 @@ autocmd FileType html,markdown,ctp setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php,ctp setlocal omnifunc=phpcomplete#CompletePHP
+"autocmd FileType php,ctp setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType vim set omnifunc=syntaxcomplete#Complete
 
 "from https://github.com/chronon/dot-vim/blob/master/vimrc
